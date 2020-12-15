@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 
 */
 
-// PROMISES METHOD
+/* PROMISES METHOD
 
 // This method should return a promise
 function getUsers() {
@@ -56,5 +56,32 @@ app.get('/', (req, res) => {
     })
 });
 
+*/
+
+// ASYNC/AWAIT METHOD
+
+// getUsers() function will be same as used in the promise method.
+function getUsers() {
+  return new Promise((resolve, reject) => {
+    fs.readFile('data.json', "utf-8", (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        const users = JSON.parse(data);
+        resolve(users);
+      }
+    });
+  });
+}
+
+// async is used below to get a promise always eventhough if it is not returned
+app.get('/', async (req, res) => {
+  try {
+    const users = await getUsers();
+    res.render('index', { users: users.users });
+  } catch (err) {
+    res.render('error', { error: err });
+  }
+});
 
 app.listen(3000, () => console.log('App listening on port localhost:3000'));
