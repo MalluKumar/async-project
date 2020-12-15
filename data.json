@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Mallu Kumar",
+      "username": "mallumk",
+      "bio": "Kannadiga"
+    },
+    {
+      "id": 2,
+      "name": "Rudresh",
+      "username": "rudreshmk",
+      "bio": "Earn Travel Enjoy"
+    },
+    {
+      "id": 3,
+      "name": "Sweety",
+      "username": "sweety",
+      "bio": "Be the best!!"
+    },
+    {
+      "id": 4,
+      "name": "Yashas",
+      "username": "yashu",
+      "bio": "Favourite Kid"
+    }
+  ]
+}
