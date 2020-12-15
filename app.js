@@ -74,7 +74,8 @@ function getUsers() {
   });
 }
 
-// async is used below to get a promise always eventhough if it is not returned
+
+/* async is used below to get a promise always eventhough if it is not returned
 app.get('/', async (req, res) => {
   try {
     const users = await getUsers();
@@ -83,5 +84,25 @@ app.get('/', async (req, res) => {
     res.render('error', { error: err });
   }
 });
+
+*/
+
+// A way to avoid using try/catch block everytime in ASYNC/AWAIT METHOD
+
+function asyncHandler(cb) {
+  return async (req, res, next) => {
+    try {
+      await cb(req, res, next);
+    } catch (err) {
+      res.render('error', { error: err });
+    }
+  }
+}
+
+app.get('/', asyncHandler(async (req, res) => {
+  const users = await getUsers();
+  res.render('index', { users: users.users });
+}));
+
 
 app.listen(3000, () => console.log('App listening on port localhost:3000'));
